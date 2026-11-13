@@ -66,7 +66,10 @@ class N8nService {
       final response = await _dio.post(
         '${AppConfig.baseUrl}/receipts/analyze',
         data: formData,
-        options: Options(headers: _authHeaders),
+        options: Options(
+          headers: _authHeaders,
+          receiveTimeout: const Duration(minutes: 3),
+        ),
       );
 
       if (response.statusCode == 200 && response.data != null) {

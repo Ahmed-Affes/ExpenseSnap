@@ -35,7 +35,16 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _currentIndex = 0;
 
   // Primary top-level screens
-  final List<Widget> _screens = const [CaptureScreen(), HistoryScreen()];
+  late final List<Widget> _screens = [
+    const CaptureScreen(),
+    HistoryScreen(
+      onNavigateToCapture: () {
+        setState(() {
+          _currentIndex = 0;
+        });
+      },
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {

@@ -10,8 +10,9 @@ import 'capture_screen.dart';
 /// Fetches saved receipt data from Google Sheets via n8n Workflow C (GET /receipts?month=YYYY-MM).
 class HistoryScreen extends StatefulWidget {
   final N8nService? service;
+  final VoidCallback? onNavigateToCapture;
 
-  const HistoryScreen({super.key, this.service});
+  const HistoryScreen({super.key, this.service, this.onNavigateToCapture});
 
   @override
   State<HistoryScreen> createState() => _HistoryScreenState();
@@ -107,6 +108,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   /// Navigates to the Capture Screen to scan a new receipt
   void _navigateToCapture() {
+    if (widget.onNavigateToCapture != null) {
+      widget.onNavigateToCapture!();
+      return;
+    }
+    if (Navigator.canPop(context)) {
+      Navigator.popUntil(context, (route) => route.isFirst);
+      return;
+    }
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const CaptureScreen()),
