@@ -134,9 +134,7 @@ void main() {
       expect(find.text('Merchant name cannot be empty'), findsOneWidget);
     });
 
-    testWidgets('rejects zero or negative amount', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('rejects zero or negative amount', (WidgetTester tester) async {
       tester.view.physicalSize = const Size(1080, 2400);
       tester.view.devicePixelRatio = 2.0;
       addTearDown(() {
