@@ -11,7 +11,7 @@ void main() {
     expect(find.text('History'), findsOneWidget);
 
     // Initial screen should be Capture
-    expect(find.text('Capture Receipt'), findsOneWidget);
+    expect(find.text('Scan a receipt'), findsOneWidget);
 
     // Tap on History tab in bottom navigation bar
     await tester.tap(find.text('History'));

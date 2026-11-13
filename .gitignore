@@ -47,7 +47,10 @@ app.*.map.json
 # Widget Preview related
 .widget_preview/
 
-# Local environment and private configuration
+# Kotlin
+.kotlin/
+.gradle/
+
 .env
 .env.*
 !.env.example
