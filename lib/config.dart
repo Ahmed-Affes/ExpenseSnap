@@ -1,3 +1,5 @@
+import 'config_local.dart';
+
 /// Application configuration for ExpenseSnap.
 ///
 /// Holds the backend n8n webhook base URL and API key.
@@ -6,7 +8,7 @@
 /// flutter run --dart-define=EXPENSESNAP_API_KEY=your_key --dart-define=EXPENSESNAP_BASE_URL=http://10.0.2.2:5678/webhook
 /// ```
 ///
-/// Or overridden at runtime via [AppConfig.apiKey] and [AppConfig.baseUrl].
+/// Or loaded automatically from [LocalConfig] or overridden at runtime.
 class AppConfig {
   /// Default base URL for n8n webhooks when running on an Android emulator.
   /// (The Android emulator uses 10.0.2.2 to access the host computer's localhost).
@@ -14,12 +16,12 @@ class AppConfig {
 
   static const String _envBaseUrl = String.fromEnvironment(
     'EXPENSESNAP_BASE_URL',
-    defaultValue: defaultBaseUrl,
+    defaultValue: LocalConfig.baseUrl,
   );
 
   static const String _envApiKey = String.fromEnvironment(
     'EXPENSESNAP_API_KEY',
-    defaultValue: '',
+    defaultValue: LocalConfig.apiKey,
   );
 
   /// Configurable base URL (can be customized for real device IP or emulator).
